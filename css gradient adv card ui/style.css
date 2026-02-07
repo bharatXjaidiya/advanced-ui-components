@@ -11,3 +11,55 @@ html,body{
 html{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 15px;
+    /* effect */
+    background: linear-gradient(black) padding-box,
+    conic-gradient(from var(--borderRotate), black,red,black) border-box;
+    padding: 0px 10px 10px 10px;
+    border: solid rgba(0, 0, 0, 0.195);
+    animation: borderAnimation 2s infinite linear;
+    animation-play-state: paused;
+    color: white;
+    transition: all 0.2s linear;
+}
+.box:hover{
+    animation-play-state: running;
+    cursor: pointer;
+    border-width: 5px;
+    color: rgb(229, 58, 58);
+    text-shadow: 0px 0px 30px rgb(230, 45, 45);
+    box-shadow: 0px 0px 50px rgb(220, 18, 18);
+}
+img{
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* the animation can't applied on the conic gradient rotate angle diretcly that's why using the @property */
+@property --borderRotate{
+    syntax: "<angle>";
+    initial-value:0deg;
+    inherits: false;
+}
+
+@keyframes borderAnimation {
+    from{
+        --borderRotate:0deg;
+    }
+    to{
+        --borderRotate:360deg;
+    }
+}
